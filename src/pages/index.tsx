@@ -1,6 +1,29 @@
 import styles from "./index.module.css";
 import Head from "next/head";
 import Link from "next/link";
+import { ProductCard } from "~/components/ProductCard";
+import headphone from "~/assets/images/headphone.png";
+import { roboto } from "~/fonts";
+
+const products = [
+  {
+    id: 1,
+    image: headphone,
+    name: "Zebronics head phone",
+    price: 19.99,
+    description:
+      "A portable headphone with a battery life of 20 hours and IP67 rating. Comes with a 3 years warranty.",
+    colors: ["#FF5733", "#33FF57", "#5733FF"],
+  },
+  {
+    id: 2,
+    image: headphone,
+    name: "Example Product #2",
+    price: 29.99,
+    description: "Example product #2 description",
+    colors: ["#FFC300", "#FF5733", "#C300FF", "#23BB42"],
+  },
+];
 
 export default function Home() {
   return (
@@ -11,34 +34,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.container}>
-          <h1 className={styles.title}>
-            Create <span className={styles.pinkSpan}>T3</span> App
-          </h1>
-          <div className={styles.cardRow}>
-            <Link
-              className={styles.card}
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className={styles.cardTitle}>First Steps →</h3>
-              <div className={styles.cardText}>
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className={styles.card}
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className={styles.cardTitle}>Documentation →</h3>
-              <div className={styles.cardText}>
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
-          </div>
+        <div className={roboto.className}>
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              image={product.image}
+              name={product.name}
+              price={product.price}
+              description={product.description}
+              colors={product.colors}
+            />
+          ))}
         </div>
       </main>
     </>
